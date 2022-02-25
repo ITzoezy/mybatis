@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.dao.StudentDao">
+    <!--使用insert,delete,update标签写sql-->
+    <select id="selectById"  resultType="com.zy.domain.Student">
+        select id,name,email,age from student where id=#{studentId}
+    </select>
+
+
+    <!--
+        执行sql语句，得到一个值（一行一列）
+    -->
+    <select id="CountStudent" resultType="java.lang.Long">
+        select count(*) from student
+    </select>
+
+    <!--使用Map查询
+        只能得到一行记录
+    -->
+    <select id="selectMap" resultType="java.util.HashMap">
+        select name,age from student where id=#{studId}
+    </select>
+
+    <!--like第一种方式-->
+    <select id="selectLikeOne" resultType="com.zy.domain.Student">
+        select * from student where name like #{name}
+    </select>
+
+</mapper>

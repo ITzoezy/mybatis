@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zy.dao.StudentDao">
+    <!--使用insert,delete,update标签写sql-->
+    <select id="selectById"  parameterType="java.lang.Integer"
+            resultType="stu">
+        select id,name,email,age from student where id=#{studentId}
+    </select>
+
+
+    <select id="selectEmail" resultType="com.zy.domain.Student">
+        select id,name,email,age from student where email=#{studentEmail}
+    </select>
+
+    <select id="selectByNameOrAge" resultType="com.zy.domain.Student">
+        select id,name,email,age from student where name=#{myName} or age=#{myAge}
+    </select>
+
+    <select id="selectByObject" resultType="com.zy.domain.Student">
+        select id,name,email,age from student where name=#{name} or age=#{age}
+    </select>
+
+    <update id="updateStudent">
+        update student set name=#{name},email=#{email},age=#{age} where id=#{id}
+    </update>
+
+    <select id="QueryByNameAndId" resultType="com.zy.domain.Student">
+        select * from student where name=#{myName} order by ${colName} desc
+    </select>
+</mapper>
